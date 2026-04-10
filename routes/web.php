@@ -1,11 +1,15 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\AuthController;
+=======
+>>>>>>> af53feb16f60b86bbd9a2118482627b5b6047178
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< HEAD
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -31,3 +35,5 @@ Route::middleware(['auth', 'role:pasien'])->prefix('pasien')->group(function () 
         return view('pasien.dashboard');
     })->name('pasien.dashboard');
 });
+=======
+>>>>>>> af53feb16f60b86bbd9a2118482627b5b6047178
