@@ -46,16 +46,16 @@
 
 <script>
     function toggleFullscreen() {
-        const icon = document.getElementById('fsIcon');
+    const icon = document.getElementById('fsIcon');
 
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-            icon.classList.remove('fa-expand');
-            icon.classList.add('fa-compress');
-        } else {
-            document.exitFullscreen();
-            icon.classList.remove('fa-compress');
-            icon.classList.add('fa-expand');
-        }
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        icon.classList.remove('fa-expand');
+        icon.classList.add('fa-compress');
+    } else {
+        document.exitFullscreen();
+        icon.classList.remove('fa-compress');
+        icon.classList.add('fa-expand');
     }
+}
 </script>

@@ -1,4 +1,5 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
+import defaultTheme from 'tailwindcss/defaultTheme'
+import daisyui from 'daisyui'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -9,6 +10,7 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
+
     theme: {
         extend: {
             fontFamily: {
@@ -16,12 +18,6 @@ export default {
             },
         },
     },
-<<<<<<< HEAD
-    plugins: [require("daisyui")],
-    daisyui: {
-        themes: ["light"],
-    },
-=======
-    plugins: [],
->>>>>>> af53feb16f60b86bbd9a2118482627b5b6047178
-};
+
+    plugins: [daisyui],
+}

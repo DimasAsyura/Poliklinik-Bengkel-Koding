@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -15,37 +14,33 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::create([
-            'nama' => 'Dewa Ivan',
-            'alamat' => 'YNKTS',
-            'no_ktp' => '1234567890123456',
-            'no_hp' => '081234567890',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('password123'),
-            'role' => 'admin',
-            'no_rm' => Carbon::now()->format('Ym') . '-001'
-        ]);
+        // nama, email, password, role
+        $users = [
+            [
+                'nama' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'no_hp' => '00876567788',
+                'password' => Hash::make('admin'),
+                'role' => 'admin',
+            ],
+            [
+                'nama' => 'Dokter',
+                'email' => 'dokter@gmail.com',
+                'no_hp' => '00876567788',
+                'password' => Hash::make('dokter'),
+                'role' => 'dokter',
+            ],
+            [
+                'nama' => 'Pasien',
+                'email' => 'pasien@gmail.com',
+                'no_hp' => '00876567788',
+                'password' => Hash::make('pasien'),
+                'role' => 'pasien',
+            ]
+        ];
 
-        $dokter = User::create([
-            'nama' => 'Dokter Ivan',
-            'alamat' => 'YNKTS',
-            'no_ktp' => '1234567890123457',
-            'no_hp' => '081234567891',
-            'email' => 'dokter@gmail.com',
-            'password' => Hash::make('password123'),
-            'role' => 'dokter',
-            'no_rm' => Carbon::now()->format('Ym') . '-002'
-        ]);
-
-        $pasien = User::create([
-            'nama' => 'Pasien',
-            'alamat' => 'YNKTS',
-            'no_ktp' => '1234567890123458',
-            'no_hp' => '081234567892',
-            'email' => 'pasien@gmail.com',
-            'password' => Hash::make('password123'),
-            'role' => 'pasien',
-            'no_rm' => Carbon::now()->format('Ym') . '-003'
-        ]);
+        foreach ($users as $user) {
+            User::create($user);
+        }
     }
 }

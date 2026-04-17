@@ -13,13 +13,9 @@ return new class extends Migration
     {
         Schema::create('poli', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
             $table->string('nama_poli', 25);
-            $table->text('keterangan')->nullable();
-=======
-            $table ->string('nama_poli',25);
-            $table->text('deskripsi');
->>>>>>> af53feb16f60b86bbd9a2118482627b5b6047178
+            // Ubah kata 'deskripsi' menjadi 'keterangan' agar sama dengan form HTML
+            $table->text('keterangan'); 
             $table->timestamps();
         });
     }

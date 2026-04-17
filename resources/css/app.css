@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-<<<<<<< HEAD
 
 @layer base {
     :root {
@@ -72,5 +71,3 @@
         background: linear-gradient(135deg, #162156, #1e2d6b);
     }
 }
-=======
->>>>>>> af53feb16f60b86bbd9a2118482627b5b6047178

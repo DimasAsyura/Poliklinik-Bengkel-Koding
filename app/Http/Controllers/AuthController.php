@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -20,14 +19,12 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
             $user = Auth::user();
-            
             if ($user->role == 'admin') {
                 return redirect()->route('admin.dashboard');
             } elseif ($user->role == 'dokter') {
                 return redirect()->route('dokter.dashboard');
-            } elseif ($user->role == 'pasien') {
+            } else {
                 return redirect()->route('pasien.dashboard');
             }
         }
@@ -63,19 +60,14 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'pasien',
-            'no_rm' => Carbon::now()->format('Ym') . '-' . rand(100, 999) 
         ]);
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil, silahkan login.');
+        return redirect()->route('login');
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
-        
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
         return redirect()->route('login');
     }
 }

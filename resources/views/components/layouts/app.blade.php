@@ -2,19 +2,15 @@
 <html lang="id" data-theme="light">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Poliklinik' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Include Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    @vite(['resources/js/app.js','resources/css/app.css'])
 </head>
 
 <body>
@@ -61,31 +57,28 @@
     </div>
 
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-
         function toggleSidebar(){
-            const sidebar = document.getElementById('appSidebar');
-            const overlay = document.getElementById('sidebarOverlay');
+            const sidebar=document.getElementById('appSidebar')
+            const overlay=document.getElementById('sidebarOverlay')
 
-            sidebar.classList.toggle('open');
+            sidebar.classList.toggle('open')
 
-            overlay.style.display = 
-            sidebar.classList.contains('open') 
-            ? 'block' 
-            : 'none';
+            overlay.style.display=
+            sidebar.classList.contains('open')
+            ? 'block'
+            : 'none'
         }
 
         function toggleFullscreen(){
-            const icon = document.getElementById('fsIcon');
+            const icon=document.getElementById('fsIcon')
 
             if(!document.fullscreenElement){
-                document.documentElement.requestFullscreen();
-                icon.className = 'fas fa-compress w-5 h-5';
+                document.documentElement.requestFullscreen()
+                icon.className='fas fa-compress'
             }
             else{
-                document.exitFullscreen();
-                icon.className = 'fas fa-expand w-5 h-5';
+                document.exitFullscreen()
+                icon.className='fas fa-expand'
             }
         }
     </script>
