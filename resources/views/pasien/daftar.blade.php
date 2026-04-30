@@ -104,28 +104,44 @@
 
     @push('scripts')
     <script>
-        document.addEventListener("DOMContentLoaded", function(){
+        document.addEventListener("DOMContentLoaded", function() {
+            const poliSelect = document.getElementById("poliSelect");
+            const jadwalSelect = document.getElementById("jadwalSelect");
+            
+            // 1. Simpan salinan SEMUA option jadwal saat halaman pertama kali dimuat
+            const allJadwalOptions = Array.from(jadwalSelect.querySelectorAll("option"));
 
-    const poliSelect = document.getElementById("poliSelect")
-    const jadwalSelect = document.getElementById("jadwalSelect")
-    const jadwalOptions = jadwalSelect.querySelectorAll("option")
+            poliSelect.addEventListener("change", function() {
+                const poliId = this.value;
 
-    poliSelect.addEventListener("change", function(){
-        let poliId = this.value
-        jadwalOptions.forEach(option => {
-            if(option.value === ""){
-                option.style.display = "block"
-                return
+                // 2. Kosongkan isi dropdown jadwal periksa
+                jadwalSelect.innerHTML = "";
+
+                // 3. Masukkan kembali option yang sesuai dengan poli yang dipilih
+                allJadwalOptions.forEach(option => {
+                    // Selalu kembalikan opsi default ("-- Pilih Jadwal --")
+                    if (option.value === "") {
+                        jadwalSelect.appendChild(option.cloneNode(true));
+                        return;
+                    }
+
+                    // Jika data-poli pada option sama dengan poli yang dipilih, masukkan ke dropdown
+                    if (option.dataset.poli === poliId) {
+                        jadwalSelect.appendChild(option.cloneNode(true));
+                    }
+                });
+
+                // 4. Reset pilihan jadwal ke default setiap kali poli berubah
+                jadwalSelect.value = "";
+            });
+
+            // (Opsional) Trigger event change sekali saat halaman dimuat
+            // Ini berguna jika nanti kamu menerapkan fungsi old() dari Laravel 
+            // agar pilihan tidak hilang saat terjadi error validasi
+            if (poliSelect.value !== "") {
+                poliSelect.dispatchEvent(new Event('change'));
             }
-            if(option.dataset.poli === poliId){
-                option.style.display = "block"
-            }else{
-                option.style.display = "none"
-            }
-        })
-        jadwalSelect.value = ""
-    })
-        })
+        });
     </script>
     @endpush
 </x-layouts.app>
